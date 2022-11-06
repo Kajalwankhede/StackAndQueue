@@ -50,7 +50,6 @@ public class StackAndQueue {
         top = top.next;
 
     }
-
     public void printData()
         {
             if (top == null) {
