@@ -1,7 +1,5 @@
 package com.stackandqueue;
-
 import static java.lang.System.exit;
-
 public class QueueOperation {
     private class Node {
         int data;
@@ -15,9 +13,9 @@ public class QueueOperation {
 
     }
 
-    private Node rear = null;
-    private Node front = null;
-    private int count = 0;
+    private static Node rear = null;
+    private static Node front = null;
+    private static int count = 0;
 
     public void enqueue(int data) {
         Node node = new Node(data);
@@ -39,6 +37,23 @@ public class QueueOperation {
         return front.data;
     }
 
+    public static int dequeue()     // delete at the beginning
+    {
+        if (front == null)
+        {
+            System.out.println("\nQueue Underflow");
+            exit(-1);
+        }
+
+        Node temp = front;
+        System.out.printf("Removing element fromqueue: %d\n", temp.data);
+        front = front.next;
+        if (front == null) {   // if the list becomes empty
+            rear = null;
+        }
+        count -= 1;
+        return temp.data;// return the removed item
+    }
 
     public static void main(String[] args) {
         QueueOperation queueOperation = new QueueOperation();
@@ -46,28 +61,10 @@ public class QueueOperation {
         queueOperation.enqueue(56);
         queueOperation.enqueue(30);
         queueOperation.enqueue(70);
+        queueOperation.dequeue();
+        queueOperation.dequeue();
         System.out.println("Peek Element is: " + queueOperation.peek());
+
     }
 
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
